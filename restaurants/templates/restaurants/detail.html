@@ -1,0 +1,11 @@
+<h1>{{restaurant}}</h1>
+<p>{{restaurant.location}}</p>
+
+<h2>Available Menus</h2>
+{% if restaurant.dish_set.all %}
+  {% for dish in restaurant.dish_set.all %}
+      <p>{{dish.name}}</p>
+  {% endfor %}
+{% else %}
+  <p>No menus available.</p>
+{% endif %}

@@ -1,1 +1,10 @@
 <h1>The Restaurant Index</h1>
+{% if all_restaurants %}
+    <ul>
+    {% for restaurant in all_restaurants %}
+        <li><a href="restaurants/{{restaurant.id}}">{{ restaurant.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No restaurants in the database.</p>
+{% endif %}
