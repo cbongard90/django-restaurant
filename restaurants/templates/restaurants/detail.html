@@ -9,3 +9,33 @@
 {% else %}
   <p>No menus available.</p>
 {% endif %}
+
+<h2>Reviews</h2>
+{% if restaurant.review_set.all %}
+  <h3>{{restaurant.review_set.all.count}} Review</h3>
+  {% for review in restaurant.review_set.all %}
+    <div>
+      <p>{{review.comment}}</p>
+      <p>Review made by:{{review.user}}</p>
+    </div>
+  {% endfor %}
+{% else %}
+  <p>No reviews available.</p>
+{% endif %}
+
+<h2>Write a review</h2>
+<form action="{% url 'restaurants:comment' restaurant.id %}" method="post">
+  {% csrf_token %}
+  <div>
+    <label for="comment">Comment</label>
+    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+  </div>
+  <div>
+    <!-- Add rating input -->
+    <label for="rating">Rating</label>
+    <input type="number" name="rating" id="rating" min="1" max="5">
+  </div>
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>
